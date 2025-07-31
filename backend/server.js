@@ -8,7 +8,10 @@ dotenv.config();
 const app = express();
 connectDB();
 
-app.use(cors());
+app.use(cors({
+  origin: "https://my-frontend3.vercel.app", // allow frontend origin
+  credentials: true // if you're using cookies or auth
+}));
 app.use(express.json());
 
 app.use('/api/doctors', doctorRoutes);
