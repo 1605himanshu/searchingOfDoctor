@@ -14,7 +14,7 @@ export default function SearchPage() {
     const fetchDoctors = async () => {
       try {
         const response = await fetch(
-          `https://my-backend10-780g.onrender.com/api/doctors?location=${location}&profession=${profession}`
+          `https://my-backend10.onrender.com/api/doctors?location=${location}&profession=${profession}`
         );
         const data = await response.json();
         setDoctors(data);
