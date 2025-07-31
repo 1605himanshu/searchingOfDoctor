@@ -5,6 +5,7 @@ import { useSearchParams } from 'next/navigation';
 
 export default function SearchPage() {
   const [doctors, setDoctors] = useState([]);
+  const [loading, setLoading] = useState(true); // 👈 loading state
   const searchParams = useSearchParams();
 
   const location = searchParams.get('location') || '';
@@ -13,13 +14,16 @@ export default function SearchPage() {
   useEffect(() => {
     const fetchDoctors = async () => {
       try {
-        const res = await fetch(`https://my-backend5.onrender.com/api/doctors?location=${location}&profession=${profession}`);
-
-
+        setLoading(true); // 👈 start loading
+        const res = await fetch(
+          `https://my-backend5.onrender.com/api/doctors?location=${location}&profession=${profession}`
+        );
         const data = await res.json();
         setDoctors(data);
       } catch (error) {
         console.error('Error fetching doctors:', error);
+      } finally {
+        setLoading(false); // 👈 stop loading
       }
     };
 
@@ -29,14 +33,18 @@ export default function SearchPage() {
   return (
     <div className="min-h-screen bg-white px-4 md:px-10 py-6">
       <div className="max-w-7xl mx-auto flex flex-wrap justify-center gap-6">
-        {doctors.length > 0 ? (
+        {loading ? (
+          <p className="text-center text-gray-600 w-full">Loading doctors...</p> // 👈 new
+        ) : doctors.length > 0 ? (
           doctors.map((doctor) => (
             <div key={doctor._id} className="w-full sm:w-[22rem]">
               <DoctorCard doctor={doctor} />
             </div>
           ))
         ) : (
-          <p className="text-center text-gray-600 w-full">No doctors found for your search criteria.</p>
+          <p className="text-center text-gray-600 w-full">
+            No doctors found for your search criteria.
+          </p>
         )}
       </div>
     </div>
