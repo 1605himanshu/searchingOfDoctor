@@ -13,7 +13,7 @@ export default function SearchPage() {
   useEffect(() => {
     const fetchDoctors = async () => {
       try {
-        const res = await fetch(`https://my-backend4-780g.onrender.com/api/doctors?location=${location}&profession=${profession}`);
+        const res = await fetch(`https://my-backend5.onrender.com/api/doctors?location=${location}&profession=${profession}`);
 
 
         const data = await res.json();
