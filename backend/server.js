@@ -9,9 +9,8 @@ const app = express();
 connectDB();
 
 const allowedOrigins = [
-  'https://my-frontend3.vercel.app',
-  'https://my-frontend3-git-main-himanshu-yadavs-projects-60edff19.vercel.app',
-  'https://my-frontend3-jo1l9kguh-himanshu-yadavs-projects-60edff19.vercel.app'
+  'https://my-frontend10.vercel.app'
+  
 ];
 
 app.use(cors({
