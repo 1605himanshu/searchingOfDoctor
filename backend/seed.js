@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 const Doctor = require("./models/Doctor");
-
 mongoose.connect("mongodb+srv://imhimanshu1605:FOtG3aFR1MNHmXXT@data.zeeqsnj.mongodb.net/?retryWrites=true&w=majority&appName=data", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
